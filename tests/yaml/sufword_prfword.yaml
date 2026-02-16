@@ -1,4 +1,4 @@
-# Tests for sufword and prfword with seqdelimiter
+# Tests for sufword and prfword with seqdelimiter and nocontractsign
 
 # Regression test for https://github.com/liblouis/liblouis/issues/1877:
 # sufword and prfword should match when adjacent character is a seqdelimiter
@@ -83,3 +83,54 @@ flags: {testmode: forward}
 tests:
   - - "стал-быть"
     - "⠒⠁⠇⠤⠃⠾"
+
+# Regression test for https://github.com/liblouis/liblouis/issues/1878:
+# contraction opcodes should respect nocontractsign during back-translation
+# ---------------------------------------------------------------------------------
+
+# word and endword already handle nocontractsign correctly (baseline)
+display: tables/unicode.dis
+table: |
+  include tables/no-no-g0.utb
+  noback nocontractsign 56
+  contraction ml
+  word mellom 134-123
+flags: {testmode: backward}
+tests:
+  - - "⠰⠍⠇"
+    - "ml"
+
+display: tables/unicode.dis
+table: |
+  include tables/no-no-g0.utb
+  noback nocontractsign 56
+  contraction ml
+  endword mellom 134-123
+flags: {testmode: backward}
+tests:
+  - - "⠰⠍⠇"
+    - "ml"
+
+# prfword should also respect nocontractsign
+display: tables/unicode.dis
+table: |
+  include tables/no-no-g0.utb
+  noback nocontractsign 56
+  prfword mellom 134-123
+  contraction ml
+flags: {testmode: backward}
+tests:
+  - - "⠰⠍⠇"
+    - "ml"
+
+# sufword should also respect nocontractsign
+display: tables/unicode.dis
+table: |
+  include tables/no-no-g0.utb
+  noback nocontractsign 56
+  sufword mellom 134-123
+  contraction ml
+flags: {testmode: backward}
+tests:
+  - - "⠰⠍⠇"
+    - "ml"
