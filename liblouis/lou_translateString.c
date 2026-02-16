@@ -2162,16 +2162,22 @@ for_selectRule(const TranslationTableHeader *table, int pos, OutString output,
 							break;
 						case CTO_SuffixableWord:
 							if (dontContract || (mode & noContractions)) break;
-							if ((beforeAttributes & (CTC_Space | CTC_Punctuation)) &&
+							if ((beforeAttributes &
+										(CTC_Space | CTC_Punctuation |
+												CTC_SeqDelimiter)) &&
 									(afterAttributes &
-											(CTC_Space | CTC_Letter | CTC_Punctuation)))
+											(CTC_Space | CTC_Letter | CTC_Punctuation |
+													CTC_SeqDelimiter)))
 								return;
 							break;
 						case CTO_PrefixableWord:
 							if (dontContract || (mode & noContractions)) break;
 							if ((beforeAttributes &
-										(CTC_Space | CTC_Letter | CTC_Punctuation)) &&
-									(afterAttributes & (CTC_Space | CTC_Punctuation)))
+										(CTC_Space | CTC_Letter | CTC_Punctuation |
+												CTC_SeqDelimiter)) &&
+									(afterAttributes &
+											(CTC_Space | CTC_Punctuation |
+													CTC_SeqDelimiter)))
 								return;
 							break;
 						case CTO_BegWord:
