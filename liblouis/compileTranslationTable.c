@@ -4849,6 +4849,10 @@ copyStringArray(char **array) {
 
 char **EXPORT_CALL
 _lou_resolveTable(const char *tableList, const char *base) {
+	if (!tableResolver) {
+		_lou_logMessage(LOU_LOG_ERROR, "Table resolver is not set");
+		return NULL;
+	}
 	char **tableFiles = (*tableResolver)(tableList, base);
 	char **result = copyStringArray(tableFiles);
 	if (tableResolver == &_lou_defaultTableResolver) lou_freeTableFiles(tableFiles);
@@ -4864,6 +4868,10 @@ _lou_resolveTable(const char *tableList, const char *base) {
 void EXPORT_CALL
 lou_registerTableResolver(
 		char **(EXPORT_CALL *resolver)(const char *tableList, const char *base)) {
+	if (!resolver) {
+		_lou_logMessage(LOU_LOG_ERROR, "Cannot register a NULL table resolver");
+		return;
+	}
 	tableResolver = resolver;
 }
 
