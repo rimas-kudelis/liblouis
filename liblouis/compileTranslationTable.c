@@ -4385,6 +4385,7 @@ finalizeCharacter(TranslationTableHeader *table, TranslationTableOffset characte
 		int detect_loop) {
 	TranslationTableCharacter *character =
 			(TranslationTableCharacter *)&table->ruleArea[characterOffset];
+	if (character->finalized) return character;
 	if (character->basechar) {
 		TranslationTableOffset basecharOffset = 0;
 		TranslationTableCharacter *basechar = character;
