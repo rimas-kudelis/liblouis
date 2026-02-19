@@ -904,10 +904,10 @@ putchars(const widechar *chars, int count, const TranslationTableHeader *table,
 		for (; k < count; k++) {
 			const TranslationTableCharacter *c = getChar(chars[k], table);
 			/* In capsword mode, a non-letter non-capsmode character terminates
-			 * the capsword (UEB Rule 8.4.2). This is needed here because
-			 * multi-character rules (e.g. endword 's) output multiple chars
-			 * in one putchars call, bypassing the main loop's per-iteration
-			 * termination check. Capsphrase is not affected. */
+			 * the capsword. This is needed here because multi-character rules
+			 * (e.g. endword 's) output multiple chars in one putchars call,
+			 * bypassing the main loop's per-iteration termination
+			 * check. Capsphrase is not affected. */
 			if (ctx->allUpper == 2 && !ctx->allUpperPhrase &&
 					!(c->attributes & CTC_Letter) && !(c->attributes & CTC_CapsMode)) {
 				ctx->allUpper = 0;
