@@ -1684,7 +1684,7 @@ flags: {testmode: forward}
 
 tests:
   - [<tips@dn.no>, ⠣⠞⠊⠏⠎⠈⠙⠝⠄⠝⠕⠜]
-  - [<https://bt.no>, ⠣⠓⠞⠞⠏⠎⠒⠌⠌⠃⠞⠄⠝⠕⠜]
+  - ["<https://bt.no>", ⠣⠓⠞⠞⠏⠎⠒⠌⠌⠃⠞⠄⠝⠕⠜]
 
 
 flags: {testmode: backward}
