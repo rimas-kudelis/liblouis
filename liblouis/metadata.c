@@ -298,11 +298,7 @@ parseLanguageTag(const char *val) {
 		for (; len <= 8; len++)
 			if (!val[len] || !isAlphaNum(val[len]) || (!list && !isAlpha(val[len])))
 				break;
-		if (len < 1 || len > 8) {
-			list_free(list);
-			return NULL;
-		}
-		if (val[len] && val[len] != '-') {
+		if (len < 1 || len > 8 || (val[len] && val[len] != '-')) {
 			list_free(list);
 			return NULL;
 		}
