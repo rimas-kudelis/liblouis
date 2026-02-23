@@ -1578,7 +1578,9 @@ syllableBreak(const TranslationTableHeader *table, int pos, const InString *inpu
 		free(hyphens);
 		return 0;
 	}
-	for (k = pos - wordStart + 1; k < (pos - wordStart + transCharslen); k++)
+	int limit = pos - wordStart + transCharslen;
+	if (limit > wordSize) limit = wordSize;
+	for (k = pos - wordStart + 1; k < limit; k++)
 		if (hyphens[k] & 1) {
 			free(hyphens);
 			return 1;
