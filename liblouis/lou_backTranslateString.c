@@ -752,9 +752,11 @@ back_selectRule(const TranslationTableHeader *table, int pos, int mode,
 							return;
 						break;
 					case CTO_SuffixableWord:
+						if (ctx.itsALetter || ctx.itsANumber) break;
 						if (beforeAttributes & (CTC_Space | CTC_Punctuation)) return;
 						break;
 					case CTO_PrefixableWord:
+						if (ctx.itsALetter || ctx.itsANumber) break;
 						if ((beforeAttributes &
 									(CTC_Space | CTC_Letter | CTC_Punctuation)) &&
 								isEndWord(table, pos, mode, input, *currentDotslen))

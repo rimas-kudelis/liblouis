@@ -256,6 +256,7 @@ dist_yaml_TESTS =				\
 	yaml/present_progressive.yaml		\
 	yaml/repword.yaml			\
 	yaml/squash_space.yaml			\
+	yaml/sufword_prfword.yaml		\
 	yaml/syllable.yaml			\
 	yaml/undefined.yaml			\
 	yaml/various-regression-tests.yaml
