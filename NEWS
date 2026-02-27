@@ -8,7 +8,22 @@ issues]].
 
 ** New features
 ** Bug fixes
+- Fix NULL pointer dereference ~lou_readCharFromFile~ thanks to XANOY.
+- Fix a memory leak in ~parseLanguageTag~ when parsing invalid queries
+  and a heap buffer overflow in ~syllableBreak~. Both thanks to PGZXB.
+- Fix a stack overflow when an invalid ~LOUIS_LOGLEVEL~ string is
+  provided and avoid a crash when the table resolver is NULL. Both
+  thanks to Anthony Tibbs.
+- Fix an infinite loop in ~isEmphasizable~ caused if characters
+  mistakenly reference one another thanks to Anthony Tibbs.
+- Both ~sufword~ and ~prfword~ now correctly recognize ~seqdelimiter~
+  characters as word boundaries during forward translation and respect
+  ~nocontractsign~ during back-translation, thanks to Anthony Tibbs.
+- Fix ~capsword~ translation with ~endword~ apostrophe'd letters (e.g.
+  AA's, FBI's) again thanks to Anthony Tibbs.
 ** Braille table improvements
+- Improvements to Norwegian thanks to Lars Bjørndal.
+- Corrections to Danish Grade 2 thanks to Bue Vester-Andersen.
 ** Other changes
 ** Deprecation notice
 - None
